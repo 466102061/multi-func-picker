@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui"/>
+<link rel="icon" href=""/>
+<title>example</title>
+<style type="text/css">
+*,*:before,*:after{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.mbody{
+	width: 100%;
+	max-width: 487px;
+	margin: 0 auto;
+	padding:0 20px;
+}
+.hd{
+	text-align: center;
+	font-size: 24px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.nav-title{
+	font-size: 18px;
+	/*margin-top: 20px;*/
+	margin-bottom: 10px;
+}
+.title{
+	font-size: 14px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.div{
+	width: 100%;
+	height: 160px;
+	padding: 0 15px;
+	overflow: hidden;
+	background-color: #f2f2f2;
+}
+.item{
+    padding-bottom:20px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+</style>
+</head>
+
+<body>
+<div class="mbody">
+	<h2 class="hd">Multi-fun-picker</h2>
+	<h3 class="nav-title">一、时间-选择器</h3>
+    <div class="item">
+        <input type="text" class="form-control" placeholder="时间-单选" onfocus="timePicker(this, 'base')" />
+    </div>
+    <div class="item">
+        <input type="text" class="form-control" placeholder="时间-双选(范围)" onfocus="timePicker(this, 'double')" />
+    </div>
+
+	<h3 class="nav-title">二、日期-选择器</h3>
+    <div class="item">
+        <input type="text" class="form-control" placeholder="日期-单选" onfocus="datePicker(this, 'base')" />
+    </div>
+    <div class="item">
+        <input type="text" class="form-control" placeholder="日期-单选-限制(前后20年)" onfocus="datePicker(this, 'range-20')" />
+    </div>
+    <div class="item">
+        <input type="text" class="form-control" placeholder="日期-单选-限制(指定范围)" onfocus="datePicker(this, 'range-min-max')" />
+    </div>
+    <div class="item">
+        <input type="text" class="form-control" placeholder="日期-双选(范围)" onfocus="datePicker(this, 'double')" />
+    </div>
+
+	<h3 class="nav-title">三、自定义-选择器</h3>
+    <div class="item">
+        <input type="text" class="form-control" placeholder="性别-一级联动" onfocus="customPicker(this, 'sex')" />
+    </div>
+    <div class="item">
+        <input type="text" class="form-control" placeholder="城市-三级联动" onfocus="customPicker(this, 'city')" />
+    </div>
+</div>
+<link rel="stylesheet" type="text/css" href="../dist/multi-func-picker.css">
+<script type="text/javascript" src="../dist/multi-func-picker.js"></script>
+<script type="text/javascript">
+//umd打包模式，模式导出__esModule模块
+var MultiFuncPicker = window.MultiFuncPicker.default;
+
+//时间-选择器
+function timePicker(dom, type){
+	//单选
+	if(type == 'base'){
+		var cur = dom.value || '';
+		new MultiFuncPicker({
+			type : 'time',
+			cur : cur
+		}).then((res)=>{
+			dom.value = res.join(":");
+			console.log("时间：", res);
+		});
+		return;
+	}
+
+	//范围选择
+	var tag = ' ~ ';
+	var cur = ['08:08', '16:06'];
+	if(dom.value){
+		cur = dom.value.split(tag);
+	}
+	new MultiFuncPicker({
+		type : 'time',
+		cur : cur
+	}).then((res)=>{
+		var t1 = res[0].join(":");
+		var t2 = res[1].join(":");
+		dom.value =  t1 + tag + t2;
+		console.log("时间：", res);
+	});
+}
+
+//日期-选择器
+function datePicker(dom, type){
+	var year = new Date().getFullYear();
+	//单选
+	if(type == 'base'){
+		var cur = dom.value || '';
+		new MultiFuncPicker({
+			type : 'date',
+			cur : cur
+		}).then((res)=>{
+			dom.value = res.join("-");
+			console.log("日期：", res);
+		});
+		return;
+	}
+
+	//限制-前后20年
+	if(type == 'range-20'){
+		var cur = dom.value || '';
+		new MultiFuncPicker({
+			type : 'date',
+			cur : cur,
+			range : 20,
+		}).then((res)=>{
+			dom.value = res.join("-");
+			console.log("日期：", res);
+		});
+		return;
+	}
+
+	//限制特定范围
+	if(type == 'range-min-max'){
+		var cur = dom.value || '';
+		new MultiFuncPicker({
+			type : 'date',
+			cur : cur,
+			minDate : (year - 1) + '-06-06',
+			maxDate : (year + 1) + '-06-06',
+		}).then((res)=>{
+			dom.value = res.join("-");
+			console.log("日期：", res);
+		});
+		return;
+	}
+	
+
+	//双选
+	if(type == 'double'){
+		//范围选择
+		var tag = ' ~ ';
+		var cur = [ year+'-08-08', year+'-12-06'];
+		if(dom.value){
+			cur = dom.value.split(tag);
+		}
+		new MultiFuncPicker({
+			type : 'date',
+			cur : cur
+		}, {
+			range : '~',
+			cancel : 'cancel',
+			confirm : 'confirm'
+		}).then((res)=>{
+			var d1 = res[0].join("-");
+			var d2 = res[1].join("-");
+			dom.value =  d1 + tag + d2;
+			console.log("日期：", res);
+		});
+		return;
+	}
+}
+
+
+//自定义-选择器
+function customPicker(dom, type){
+	//单选
+	if(type == 'sex'){
+		var cur = dom.value || '';
+		var data = [
+			'男',
+			'女',
+			//or 
+			// {code : 1001, text : '男'},
+			// {code : 1001, text : '女'},
+		]
+		new MultiFuncPicker({
+			type : 'custom',
+			level : 1,
+			cur : cur,
+			data : data
+		}).then((res)=>{
+			dom.value = res[0];
+			console.log("性别：", res);
+		});
+		return;
+	}
+
+	//城市选择
+	var data = [
+		{
+		  name : {code : 1002, text : '福建省'},
+		  list : [
+			  {
+			    name : {code : 2001, text : '福州市'},
+			    list : [
+			    	{code : 3001, text : '鼓楼区'},
+			    	{code : 3001, text : '三元区'}
+			    ]
+			  },
+			  {
+			    name : {code : 2001, text : '厦门市'},
+			    list : [
+			    	{code : 3001, text : '思明区'},
+			    	{code : 3001, text : '集美区'}
+			    ]
+			  }
+		  ]
+		},	
+		{
+		  name : {code : 1002, text : '福建省2'},
+		  list : [
+			  {
+			    name : {code : 2001, text : '福州市2'},
+			    list : [
+			    	{code : 3001, text : '鼓楼区2'},
+			    	{code : 3001, text : '三元区2'}
+			    ]
+			  },
+			  {
+			    name : {code : 2001, text : '厦门市2'},
+			    list : [
+			    	{code : 3001, text : '思明区2'},
+			    	{code : 3001, text : '集美区2'}
+			    ]
+			  }
+		  ]
+		}
+	]
+	var cur = dom.value ? dom.value.split("-") : "";
+	new MultiFuncPicker({
+		type : 'custom',
+		level: 3,
+		cur : cur,
+		data : data,
+
+		// //自定义对象参数对应的键值key
+		// nameKey: 'name',		//
+		// listKey: 'list',		//
+		// textKey: 'text',		//	
+	}).then((res)=>{
+		var value = [];
+		res.forEach(function(item){
+			value.push(item.text);
+		});
+		dom.value =  value.join("-");
+		console.log("地址：", res);
+	});
+}
+</script>
+</body>
+
+</html>
