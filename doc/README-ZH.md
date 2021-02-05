@@ -1,7 +1,7 @@
 ### multi-func-picker
 一个多功能的选择器，可以是时间(time-picker)选择器、日期(date-picker)选择器或者自定义(custom-picker)选择器。
 
-#### 注意事项 | [English](https://github.com/466102061/multi-func-picker/tree/main/dist)
+#### 注意事项 | [English](https://github.com/466102061/multi-func-picker#readme)
 + 目前仅支持：web-h5
 + 选择器换皮肤：可以通过【重写】CSS来更改皮肤
 
