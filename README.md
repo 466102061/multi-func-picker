@@ -130,6 +130,6 @@ let data = [
 | param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |
 | range | String | -- | 至 | text of range to. | 
-| cancel | String | -- | 取消 | cancel btn text. | 
-| confirm | String | -- | 确定 | confirm btn text. | 
+| cancel | String | -- | 取消 | text of cancel btn. | 
+| confirm | String | -- | 确定 | text of confirm btn. | 
 
