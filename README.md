@@ -70,7 +70,7 @@ new MultiFuncPicker({
 | param | type | require | default | desc |
 | :----: | :----: | :----: | :----: | :---- |
 | options.range | Number | -- | 10 | before and after 10 years of the date-picker. |
-| options.nameKey | String or Array | -- | -- | the begin of the date-picker. |
+| options.minDate | String or Array | -- | -- | the begin of the date-picker. |
 | options.maxDate | String or Array | -- | -- | the end of the date-picker. |
 
 + custom-picker

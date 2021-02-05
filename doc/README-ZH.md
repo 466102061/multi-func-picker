@@ -70,7 +70,7 @@ new MultiFuncPicker({
 | 参数 | 类型 | 是否必须 | 默认值 | 描述 |
 | :----: | :----: | :----: | :----: | :---- |
 | options.range | Number | -- | 10 | 日期选择器的日期范围，默认显示当前的前后10年. |
-| options.nameKey | String or Array | -- | -- | 日期的起始范围值. |
+| options.minDate | String or Array | -- | -- | 日期的起始范围值. |
 | options.maxDate | String or Array | -- | -- | 日期的最终范围值. |
 
 + custom-picker
