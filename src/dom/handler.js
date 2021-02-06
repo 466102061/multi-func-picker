@@ -71,8 +71,12 @@ function confirm(ctx){
 	if(objectProtoType.isFunction(ctx.callback)){
 		ctx.callback(res);
 	}
-	if(objectProtoType.isFunction(ctx.thenCallback)){
-		ctx.thenCallback(res);
+	if(objectProtoType.isArray(ctx.thenCallbacks)){
+		ctx.thenCallbacks.forEach((thenCb, index)=>{
+			if(objectProtoType.isFunction(thenCb)){
+				thenCb(res);
+			}
+		});
 	}
 	closeMask(ctx);
 }

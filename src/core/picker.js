@@ -25,7 +25,7 @@ class Picker{
 		this.maxDate = param.maxDate || '';
 		this.range = param.range || 10;
 		this.callback = param.callback || function(res){};
-		this.thenCallback = function(res){};
+		this.thenCallbacks = [];
 
 		//城市对象参数对应的键值key
 		this.data = param.data || [];
@@ -48,7 +48,8 @@ class Picker{
 		return this;
 	}
 	then(callback){
-		this.thenCallback = callback;
+		this.thenCallbacks.push(callback);
+		return this;
 	}
 }
 
