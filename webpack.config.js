@@ -1,13 +1,13 @@
 const path = require('path')
 const webpack = require('webpack')
 const pkg = require('./package.json')
-const time = require("dayjs")().format("YYYY-M-D HH:mm:ss")
+const timeFormat = require("./src/utils/time.js")
 const copyWebpackPlugin = require('copy-webpack-plugin')
 const bannerPlugin = new webpack.BannerPlugin(
 `@desc ${ pkg.description }
 @version ${ pkg.version }
 @author ${ pkg.author + ' ' + pkg.email }
-@time ${ time }
+@time ${ timeFormat("yyyy-MM-dd hh:mm:ss") }
 
 @desc 日期(默认)、时间、其他(城市)选择器
 @param {Object} options
