@@ -93,7 +93,7 @@ function initDate(ctx, formatCurs, index){
 			if([1, 3, 5, 7, 8, 10, 12].includes(vM)){
 				d = 31;
 			}else if(vM == 2){//2月
-				d = isR ? 28 : 29;
+				d = isR ? 29 : 28;
 			}
 			if(!mIndex && parseInt(vY) == parseInt(cY) && parseInt(vM) == parseInt(cM)){
 				mIndex = j-monthMin;

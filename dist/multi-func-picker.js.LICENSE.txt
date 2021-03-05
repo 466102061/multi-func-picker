@@ -2,7 +2,7 @@
  * @desc A multi-functional picker that can be time-picker, date-picker or custom-picker.
  * @version 1.0.0
  * @author 小小咖 466102061@qq.com
- * @time 2021-02-06 17:25:38
+ * @time 2021-03-05 16:40:52
  *
  * @desc 日期(默认)、时间、其他(城市)选择器
  * @param {Object} options
