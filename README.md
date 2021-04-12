@@ -1,7 +1,7 @@
 ### multi-func-picker
 A multi-functional picker that can be time-picker, date-picker or custom-picker.
 
-#### Notes | [简体中文](https://github.com/466102061/multi-func-picker/blob/main/doc/README-ZH.md)
+#### Notes | [Update](https://github.com/466102061/multi-func-picker/blob/main/doc/update.md) | [简体中文](https://github.com/466102061/multi-func-picker/blob/main/doc/README-ZH.md)
 + support：web-h5
 + picker skin: You can change the  skin by change the CSS.
 
